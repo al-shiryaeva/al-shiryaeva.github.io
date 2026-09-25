@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Алена — ИИ-ассистенты и гайды для блога</title>
+<meta name="description" content="ИИ-ассистенты и бесплатные гайды для блогеров: идеи, сценарии рилсов, сторис и контент-план твоим голосом. Алена, @al_shiryaevaa.">
+<meta property="og:title" content="Блог, который пишет ИИ твоим голосом">
+<meta property="og:description" content="Бесплатный гайд «Не знаю, что снять» и ИИ-ассистенты для блога от Алены.">
+<meta property="og:image" content="https://al-shiryaeva.github.io/img/alena-2.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F2B8C6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23F2B8C6'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Arial' font-weight='900' font-size='34' fill='%231E1A1C'%3EА%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="fonts.css">
+<style>
+/* ===== базовое ===== */
+:root{
+  --pink:#F2B8C6; --soft:#FBE7EC; --deep:#C8587A; --ink:#1E1A1C; --muted:#6B6166; --paper:#FFFCFA; --line:#EBDDE1;
+  --grad:linear-gradient(135deg,#E58AA5 0%,#C8587A 100%);
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.55;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Unbounded',sans-serif;line-height:1.1;letter-spacing:-.01em}
+h1{font-size:36px;font-weight:800}
+h2{font-size:28px;font-weight:700}
+h3{font-size:18px;font-weight:700}
+.kicker{font-family:'Unbounded';font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--deep);margin-bottom:16px}
+.lead{font-size:18px;color:var(--muted)}
+.hand{font-family:'Caveat',cursive;font-weight:700;color:var(--deep);font-size:26px;line-height:1.1}
+section{padding:56px 0}
+
+/* кнопки — сжатие и упругий возврат */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 28px;border-radius:999px;font-family:'Unbounded';font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .15s ease,filter .15s ease;-webkit-tap-highlight-color:transparent}
+.btn:hover{transform:translateY(-2px);filter:saturate(1.15)}
+.btn:active{transform:scale(.96)}
+.btn:focus-visible,.row:focus-visible,.link:focus-visible{outline:3px solid var(--deep);outline-offset:3px}
+.btn-main{background:var(--grad);color:#fff;box-shadow:0 10px 24px -12px rgba(200,88,122,.7)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn-full{width:100%}
+.link{font-weight:700;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--pink);text-decoration-thickness:2px}
+.arrow::after{content:"→";margin-left:6px}
+
+/* шапка */
+.top{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(255,252,250,.72)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Unbounded';font-weight:800;font-size:20px;text-decoration:none}
+.logo span{font-family:'Caveat';font-weight:700;color:var(--deep);font-size:22px;margin-left:6px}
+.top .btn{min-height:44px;padding:0 18px;font-size:13px}
+
+/* первый экран */
+.hero{position:relative;overflow:hidden;padding:32px 0 56px}
+.hero-grid{display:grid;gap:32px}
+.hero h1 em{font-style:normal;color:var(--deep)}
+.hero .lead{margin:20px 0 28px;max-width:560px}
+.hero .actions{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.hero .actions .btn{width:100%}
+.hero-photo{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;max-height:560px}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.hero-note{position:absolute;left:16px;bottom:16px;background:rgba(255,252,250,.92);border-radius:12px;padding:8px 14px;transform:rotate(-2deg)}
+
+/* ситуации */
+.rows{margin-top:24px;border-top:1.5px solid var(--line)}
+.row{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:20px 4px;border-bottom:1.5px solid var(--line);text-decoration:none;transition:background .15s ease,padding .18s cubic-bezier(.34,1.56,.64,1)}
+.row:hover{background:var(--soft);padding-left:12px}
+.row:active{transform:scale(.99)}
+.row b{font-family:'Unbounded';font-size:17px;font-weight:700;display:block;margin-bottom:4px}
+.row span{color:var(--muted);font-size:15px}
+.row i{font-style:normal;font-family:'Unbounded';font-weight:700;color:var(--deep);font-size:20px}
+
+/* гайд */
+.guide{background:var(--soft)}
+.guide-grid{display:grid;gap:32px;align-items:center}
+.pages{position:relative;height:360px}
+.pages img{position:absolute;width:58%;border-radius:8px;box-shadow:0 24px 48px -24px rgba(30,26,28,.45)}
+.pages img:nth-child(1){left:0;top:24px;transform:rotate(-6deg)}
+.pages img:nth-child(2){left:21%;top:0;z-index:2}
+.pages img:nth-child(3){right:0;top:36px;transform:rotate(6deg)}
+.checks{list-style:none;margin:20px 0 28px}
+.checks li{position:relative;padding-left:32px;margin-bottom:12px}
+.checks li::before{content:"";position:absolute;left:0;top:3px;width:20px;height:20px;border-radius:50%;background:var(--pink)}
+.checks li::after{content:"";position:absolute;left:6px;top:8px;width:8px;height:5px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(-45deg)}
+
+/* ассистенты */
+.plist{margin-top:24px}
+.prod{display:grid;gap:12px;padding:24px 0;border-bottom:1.5px solid var(--line)}
+.prod:first-child{border-top:1.5px solid var(--line)}
+.prod h3{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.tag{font-family:'Manrope';font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--soft);color:var(--deep)}
+.prod p{color:var(--muted)}
+.price{font-family:'Unbounded';font-weight:800;font-size:24px}
+.prod.hit{background:var(--ink);color:var(--paper);border-radius:var(--r);padding:28px 24px;border:0;margin-bottom:8px}
+.prod.hit p{color:rgba(255,252,250,.72)}
+.prod.hit .tag{background:var(--pink);color:var(--ink)}
+.prod .btn-ghost.soon{min-height:44px;font-size:13px;padding:0 18px}
+
+/* шаги */
+.steps{display:grid;gap:24px;margin-top:28px;counter-reset:s}
+.step{counter-increment:s;position:relative;padding-left:64px}
+.step::before{content:counter(s);position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;background:var(--pink);font-family:'Unbounded';font-weight:800;display:flex;align-items:center;justify-content:center}
+.step b{display:block;font-family:'Unbounded';font-size:16px;margin-bottom:4px}
+.step span{color:var(--muted)}
+
+/* обо мне */
+.about-grid{display:grid;gap:32px;align-items:center}
+.about-photo{border-radius:var(--r);overflow:hidden;aspect-ratio:1/1}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.about p{margin-bottom:16px;font-size:17px;max-width:620px}
+.facts{list-style:none;margin:8px 0 28px}
+.facts li{padding:12px 0;border-bottom:1px solid var(--line);font-weight:600}
+.facts li:first-child{border-top:1px solid var(--line)}
+
+/* услуга */
+.service .box{background:var(--pink);border-radius:var(--r);padding:32px 24px;position:relative;overflow:hidden}
+.service ul{list-style:none;margin:20px 0 28px}
+.service li{padding:10px 0;border-bottom:1px solid rgba(30,26,28,.15);font-weight:600}
+.service .btn-main{background:var(--ink)}
+
+/* финал */
+.final{text-align:center}
+.final h2{max-width:720px;margin:0 auto 16px}
+.final .lead{margin:0 auto 28px;max-width:560px}
+.final .btn{width:100%;max-width:420px}
+footer{padding:32px 0 40px;border-top:1.5px solid var(--line);font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+footer nav{display:flex;flex-wrap:wrap;gap:12px 20px}
+footer a{text-decoration:none;font-weight:700;color:var(--ink)}
+
+/* ===== десктоп ===== */
+@media (min-width:900px){
+  .wrap{padding:0 40px}
+  section{padding:88px 0}
+  h1{font-size:60px} h2{font-size:40px}
+  .hero{padding:48px 0 88px}
+  .hero-grid{grid-template-columns:1.1fr .9fr;align-items:center;gap:56px}
+  .hero .actions{flex-direction:row;align-items:center;gap:28px}
+  .hero .actions .btn{width:auto}
+  .guide-grid,.about-grid{grid-template-columns:1fr 1fr;gap:64px}
+  .pages{height:460px}
+  .prod{grid-template-columns:1fr auto auto;align-items:center;gap:32px;padding:28px 8px}
+  .prod.hit{padding:36px 40px}
+  .steps{grid-template-columns:repeat(3,1fr);gap:32px}
+  .service .box{padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:center}
+  .service ul{margin:0}
+  .service .box .btn{width:auto}
+  .top .btn{font-size:14px}
+}
+
+/* ===== ВАРИАНТ A — как в гайдах ===== */
+body.t-a .hero{background:var(--pink)}
+body.t-a .hero::before,body.t-a .hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.35)}
+body.t-a .hero::before{width:420px;height:420px;right:-140px;top:-160px}
+body.t-a .hero::after{width:220px;height:220px;left:-80px;bottom:-90px;background:rgba(255,255,255,.25)}
+body.t-a .hero .kicker{color:var(--ink);opacity:.7}
+body.t-a .hero h1 em{color:var(--ink);background:linear-gradient(transparent 62%,rgba(255,255,255,.7) 62%)}
+body.t-a .hero .lead{color:var(--ink);opacity:.8}
+body.t-a .hero .btn-main{background:var(--ink)}
+body.t-a .top{background:rgba(242,184,198,.8)}
+body.t-a .hero-photo{border:6px solid #fff;transform:rotate(1.5deg);box-shadow:0 30px 60px -30px rgba(30,26,28,.5)}
+body.t-a .hero-grid{position:relative;z-index:1}
+
+</style>
+
+</head>
+<body class="t-a">
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#">Алена<span>ИИ для блога</span></a>
+    <a class="btn btn-main" href="https://t.me/Claudshortbot?start=site">Открыть бота</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">Автоматизирую блоги с ИИ</div>
+      <h1>Блог, который пишет ИИ <em>твоим голосом</em></h1>
+      <p class="lead">ИИ-ассистенты и гайды для блогеров: идеи, сценарии рилсов, сторис и контент-план. Без пустого листа и без выгорания.</p>
+      <div class="actions">
+        <a class="btn btn-main" href="https://t.me/Claudshortbot?start=guide_content">Забрать бесплатный гайд</a>
+        <a class="link" href="#assistants">Смотреть ассистентов</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="img/alena-2.jpg" fetchpriority="high" width="760" height="1330" alt="Алена в светлом костюме с бокалом">
+      <div class="hero-note hand">привет, я Алена ♡</div>
+    </div>
+  </div>
+</section>
+
+<section id="need">
+  <div class="wrap">
+    <div class="kicker">С чего начать</div>
+    <h2>Что тебе сейчас нужнее?</h2>
+    <div class="rows">
+      <a class="row" href="#guide"><div><b>Не знаю, что снять</b><span>Бесплатный гайд и ассистент, который пишет сценарии</span></div><i>→</i></a>
+      <a class="row" href="#assistants"><div><b>Хочу, чтобы блог работал, пока я сплю</b><span>Свой ИИ-агент в Telegram, как моя Клава</span></div><i>→</i></a>
+      <a class="row" href="#assistants"><div><b>Хочу продавать через бота</b><span>Бот с гайдами и оплатой, как этот</span></div><i>→</i></a>
+      <a class="row" href="#service"><div><b>Сделайте всё за меня</b><span>Бот, ИИ-агент или автоматизация под ключ</span></div><i>→</i></a>
+    </div>
+  </div>
+</section>
+
+<section class="guide" id="guide">
+  <div class="wrap guide-grid">
+    <div class="pages">
+      <img src="img/guide-p4.jpg" loading="lazy" width="744" height="1053" alt="Страница гайда: анкета о себе">
+      <img src="img/guide-cover.jpg" loading="lazy" width="744" height="1053" alt="Обложка гайда «Не знаю, что снять»">
+      <img src="img/guide-p6.jpg" loading="lazy" width="744" height="1053" alt="Страница гайда: 30 идей одним сообщением">
+    </div>
+    <div>
+      <div class="kicker">Бесплатно</div>
+      <h2>Гайд «Не знаю, что снять»</h2>
+      <p class="lead" style="margin-top:16px">Идеи, сценарии и контент-план на месяц за один вечер с ИИ. Читается за 15 минут.</p>
+      <ul class="checks">
+        <li>Анкета о себе: после неё ИИ перестаёт писать «как все»</li>
+        <li>30 идей рилсов одним запросом</li>
+        <li>Формула рилса, который досматривают, и 10 крючков</li>
+        <li>Контент-план на неделю, сторис и подписи</li>
+      </ul>
+      <a class="btn btn-main btn-full" style="max-width:420px" href="https://t.me/Claudshortbot?start=guide_content">Забрать гайд в Telegram</a>
+    </div>
+  </div>
+</section>
+
+<section id="assistants">
+  <div class="wrap">
+    <div class="kicker">ИИ-ассистенты</div>
+    <h2>Делают работу за тебя. Платишь один раз</h2>
+    <div class="plist">
+      <div class="prod hit">
+        <div><h3>Контент-Ассистент <span class="tag">уже в боте</span></h3><p>Идеи, сценарии рилсов, сторис и контент-план на неделю твоим голосом</p></div>
+        <div class="price">500 ₽</div>
+        <a class="btn btn-main" href="https://t.me/Claudshortbot?start=content">Забрать в боте</a>
+      </div>
+      <div class="prod">
+        <div><h3>ИИ-Монтажёр <span class="tag">скоро</span></h3><p>Рилс за 15 минут без навыков монтажа</p></div>
+        <div class="price">500 ₽</div>
+        <a class="btn btn-ghost soon" href="https://t.me/Claudshortbot?start=montage">Сообщить о выходе</a>
+      </div>
+      <div class="prod">
+        <div><h3>Свой ИИ-агент <span class="tag">скоро</span></h3><p>Личный помощник в Telegram, который работает 24/7</p></div>
+        <div class="price">990 ₽</div>
+        <a class="btn btn-ghost soon" href="https://t.me/Claudshortbot?start=agent">Сообщить о выходе</a>
+      </div>
+      <div class="prod">
+        <div><h3>Бот-Продажник <span class="tag">скоро</span></h3><p>Продаёшь свои продукты через Telegram-бота</p></div>
+        <div class="price">990 ₽</div>
+        <a class="btn btn-ghost soon" href="https://t.me/Claudshortbot?start=seller">Сообщить о выходе</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <div class="kicker">Как это работает</div>
+    <h2>Справится даже тот, кто впервые открыл нейросеть</h2>
+    <div class="steps">
+      <div class="step"><b>Забираешь в боте</b><span>Оплата картой, звёздами Telegram или переводом. Архив приходит сразу.</span></div>
+      <div class="step"><b>Ставишь за 10 минут</b><span>В Claude или ChatGPT по пошаговой инструкции. Программировать не нужно.</span></div>
+      <div class="step"><b>Пишешь тему</b><span>Получаешь крючок, сценарий, текст на экран и подпись. Звучит как ты.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap about-grid">
+    <div class="about-photo"><img src="img/alena-1.jpg" loading="lazy" width="900" height="692" alt="Алена в очках и пиджаке"></div>
+    <div>
+      <div class="kicker">Обо мне</div>
+      <h2>Я Алена и сама веду блог с ИИ</h2>
+      <p style="margin-top:20px">Я автоматизирую свой блог и показываю, как это повторить. Всё, что продаю, сначала сделала и проверила на себе.</p>
+      <ul class="facts">
+        <li>Мой ИИ-агент Клава работает в Telegram круглосуточно</li>
+        <li>Этот сайт и бот я собрала с ИИ</li>
+        <li>Пишу про Claude простыми словами в канале «Короооче, про Claude»</li>
+      </ul>
+      <a class="btn btn-ghost" href="https://instagram.com/al_shiryaevaa">Подписаться в Instagram</a>
+    </div>
+  </div>
+</section>
+
+<section class="service" id="service">
+  <div class="wrap">
+    <div class="box">
+      <div>
+        <div class="kicker" style="color:var(--ink)">Под ключ</div>
+        <h2>Сделаю за тебя</h2>
+        <p style="margin-top:16px;font-size:17px">Не хочешь разбираться? Соберу бота с оплатой, личного ИИ-агента или автоматизацию блога. Сначала разговор: расскажешь задачу, я честно скажу, помогу или нет, и назову цену.</p>
+      </div>
+      <div>
+        <ul>
+          <li>Telegram-бот с гайдами и оплатой</li>
+          <li>ИИ-агент, который работает 24/7</li>
+          <li>Автоматизация рутины блога</li>
+        </ul>
+        <a class="btn btn-main btn-full" href="https://t.me/Claudshortbot?start=service">Оставить заявку в боте</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <p class="hand" style="margin-bottom:12px">начни с малого</p>
+    <h2>Первый шаг бесплатный</h2>
+    <p class="lead">Забери гайд, сделай первый рилс по формуле и посмотри, как это работает.</p>
+    <a class="btn btn-main" href="https://t.me/Claudshortbot?start=guide_content">Забрать бесплатный гайд</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Алена, 2026</span>
+    <nav>
+      <a href="https://instagram.com/al_shiryaevaa">Instagram</a>
+      <a href="https://t.me/al_shiryaevaa">Telegram-канал</a>
+      <a href="https://t.me/Claudshortbot?start=site">Бот</a>
+    </nav>
+  </div>
+</footer>
+
+
+</body>
+</html>
