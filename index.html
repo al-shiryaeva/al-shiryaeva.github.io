@@ -22,7 +22,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.55;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%}
+img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
 h1,h2,h3{font-family:'Unbounded',sans-serif;line-height:1.1;letter-spacing:-.01em}
@@ -35,7 +35,7 @@ h3{font-size:18px;font-weight:700}
 section{padding:56px 0}
 
 /* кнопки — сжатие и упругий возврат */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 28px;border-radius:999px;font-family:'Unbounded';font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 28px;border-radius:999px;font-family:'Unbounded';font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;
   transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .15s ease,filter .15s ease;-webkit-tap-highlight-color:transparent}
 .btn:hover{transform:translateY(-2px);filter:saturate(1.15)}
 .btn:active{transform:scale(.96)}
@@ -76,7 +76,7 @@ section{padding:56px 0}
 /* гайд */
 .guide{background:var(--soft)}
 .guide-grid{display:grid;gap:32px;align-items:center}
-.pages{position:relative;height:360px}
+.pages{position:relative;width:100%;max-width:520px;aspect-ratio:10/9;margin:0 auto}
 .pages img{position:absolute;width:58%;border-radius:8px;box-shadow:0 24px 48px -24px rgba(30,26,28,.45)}
 .pages img:nth-child(1){left:0;top:24px;transform:rotate(-6deg)}
 .pages img:nth-child(2){left:21%;top:0;z-index:2}
@@ -141,7 +141,7 @@ footer a{text-decoration:none;font-weight:700;color:var(--ink)}
   .hero .actions{flex-direction:row;align-items:center;gap:28px}
   .hero .actions .btn{width:auto}
   .guide-grid,.about-grid{grid-template-columns:1fr 1fr;gap:64px}
-  .pages{height:460px}
+  
   .prod{grid-template-columns:1fr auto auto;align-items:center;gap:32px;padding:28px 8px}
   .prod.hit{padding:36px 40px}
   .steps{grid-template-columns:repeat(3,1fr);gap:32px}
